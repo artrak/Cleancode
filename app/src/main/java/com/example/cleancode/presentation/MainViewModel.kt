@@ -10,9 +10,9 @@ import com.example.domain.usecase.GetUserNameUseCase
 import com.example.domain.usecase.SaveUserNameUseCase
 
 class MainViewModel(
-        private val getUserNameUserCase: GetUserNameUseCase,
-        private val saveUserNameUseCase: SaveUserNameUseCase
-    ) : ViewModel() {
+    private val getUserNameUserCase: GetUserNameUseCase,
+    private val saveUserNameUseCase: SaveUserNameUseCase
+) : ViewModel() {
 
     private var resultLiveMutable = MutableLiveData<String>()
     val resultLive: LiveData<String> = resultLiveMutable
@@ -31,6 +31,7 @@ class MainViewModel(
         val resultData: Boolean = saveUserNameUseCase.execute(params)
         resultLiveMutable.value = "Save result = $resultData"
     }
+
     fun load() {
         val userName: UserName = getUserNameUserCase.execute()
         resultLiveMutable.value = "${userName.firstName} ${userName.lastName}"
